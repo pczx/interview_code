@@ -1,3 +1,5 @@
+package leetcode;
+
 public class Solution5 {
     public String replaceSpace(String s) {
         int cnt = 0, n = s.length();

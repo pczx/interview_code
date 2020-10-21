@@ -1,3 +1,5 @@
+package leetcode;
+
 class Solution21 {
     public int[] exchange(int[] nums) {
         if (nums == null || nums.length == 0) {

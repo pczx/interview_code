@@ -1,3 +1,5 @@
+package leetcode;
+
 class Solution22 {
     int count = 0;
     ListNode ans = null;

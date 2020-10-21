@@ -1,3 +1,5 @@
+package leetcode;
+
 public class Solution11 {
     public int minArray(int[] numbers) {
         int low = 0;

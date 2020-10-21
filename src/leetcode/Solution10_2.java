@@ -1,3 +1,5 @@
+package leetcode;
+
 public class Solution10_2 {
     public int numWays(int n) {
         if (n <= 1) {

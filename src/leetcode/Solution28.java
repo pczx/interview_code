@@ -1,3 +1,5 @@
+package leetcode;
+
 class Solution28 {
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {

@@ -1,3 +1,5 @@
+package leetcode;
+
 public class Solution3 {
     public int findRepeatNumber(int[] nums) {
         if (nums == null || nums.length == 0) {

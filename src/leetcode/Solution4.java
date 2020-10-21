@@ -1,3 +1,5 @@
+package leetcode;
+
 public class Solution4 {
     public boolean findNumberIn2DArray(int[][] matrix, int target) {
         if (matrix == null || matrix.length == 0) {

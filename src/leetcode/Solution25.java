@@ -1,3 +1,5 @@
+package leetcode;
+
 class Solution25 {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l2 == null) {

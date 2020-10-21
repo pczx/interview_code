@@ -2,15 +2,21 @@ package leetcode;
 
 public class Solution3 {
     public int findRepeatNumber(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
+        if (nums == null || nums.length <= 0) {
+            return -1;
         }
-        int[] count = new int[nums.length];
+
         for (int i = 0; i < nums.length; i++) {
-            if (++count[nums[i]] > 1) {
-                return nums[i];
+            while (nums[i] != i) {
+                if (nums[i] == nums[nums[i]]) {
+                    return nums[i];
+                }
+
+                int temp = nums[i];
+                nums[i] = nums[temp];
+                nums[temp] = temp;
             }
         }
-        return 0;
+        return -1;
     }
 }

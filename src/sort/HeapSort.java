@@ -2,6 +2,10 @@ package sort;
 
 import java.util.Arrays;
 
+
+/**
+ * 堆排序
+ */
 public class HeapSort {
 
     public static void sort(int[] a) {
@@ -20,12 +24,12 @@ public class HeapSort {
     }
 
     private static void sink(int[] a, int k, int n) {
-        while (2 * k + 1 < n) {
+        while (2 * k + 1 <= n - 1) {
             int j = 2 * k + 1;
             if (j < n - 1 && a[j] < a[j + 1]) {
                 j++;
             }
-            if (!(a[k] < a[j])) {
+            if (a[k] > a[j]) {
                 break;
             }
             exchange(a, k, j);

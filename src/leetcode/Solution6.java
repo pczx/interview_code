@@ -3,8 +3,6 @@ package leetcode;
 import java.util.Stack;
 
 public class Solution6 {
-
-
     public int[] reversePrint(ListNode head) {
         Stack<ListNode> stack = new Stack<>();
         ListNode curr = head;

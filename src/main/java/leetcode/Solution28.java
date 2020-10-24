@@ -12,7 +12,10 @@ class Solution28 {
         if (left == null && right == null) {
             return true;
         }
-        if (left == null || right == null || left.val != right.val) {
+        if (left == null || right == null) {
+            return false;
+        }
+        if (left.val != right.val) {
             return false;
         }
         return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);

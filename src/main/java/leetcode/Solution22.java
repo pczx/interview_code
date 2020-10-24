@@ -1,20 +1,24 @@
 package leetcode;
 
 class Solution22 {
-    int count = 0;
-    ListNode ans = null;
 
     public ListNode getKthFromEnd(ListNode head, int k) {
-       recursion(head, k);
-       return ans;
-    }
-
-    private void recursion(ListNode head, int k) {
-        if (head == null) return;
-        recursion(head.next, k);
-        count++;
-        if (count == k) {
-            ans = head;
+        if (head == null || k == 0) {
+            return null;
         }
+        ListNode ahead = head;
+        for (int i = 1; i < k; i++) {
+            if (ahead.next != null) {
+                ahead = ahead.next;
+            } else {
+                return null;
+            }
+        }
+        ListNode behind = head;
+        while (ahead.next != null) {
+            ahead = ahead.next;
+            behind = behind.next;
+        }
+        return behind;
     }
 }

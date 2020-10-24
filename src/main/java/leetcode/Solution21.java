@@ -9,22 +9,27 @@ class Solution21 {
         return nums;
     }
 
-    private void quickSwap(int[] nums, int low, int high) {
-        int i = low, j = high;
-        while (i < j) {
-            while (i < j && nums[j] % 2 == 0) {
-                j--;
-            }
-            while (i < j && nums[i  ] % 2 != 0) {
+    private void quickSwap(int[] nums, int lo, int hi) {
+        int i = lo, j = hi;
+        while (true) {
+            while ((nums[i] & 1) == 1) {
+                if (i == hi) {
+                    break;
+                }
                 i++;
             }
-            swap(nums, i, j);
+            while ((nums[j] & 1) == 0) {
+                if (j == lo) {
+                    break;
+                }
+                j--;
+            }
+            if (i >= j) {
+                break;
+            }
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
         }
-    }
-
-    private void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
     }
 }

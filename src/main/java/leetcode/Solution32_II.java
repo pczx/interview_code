@@ -9,21 +9,28 @@ class Solution32_II {
             return ans;
         }
         LinkedList<TreeNode> queue = new LinkedList<>();
+        List<Integer> level = new ArrayList<>();
         queue.offer(root);
+        int nextLevel = 0;
+        int toBePrinted = 1;
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            List<Integer> list = new ArrayList<>();
-            for (int i = 1; i <= size; i++) {
-                TreeNode node = queue.poll();
-                list.add(node.val);
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
+            TreeNode node = queue.poll();
+            level.add(node.val);
+            if (node.left != null) {
+                queue.offer(node.left);
+                nextLevel++;
             }
-            ans.add(list);
+            if (node.right != null) {
+                queue.offer(node.right);
+                nextLevel++;
+            }
+            toBePrinted--;
+            if (toBePrinted == 0) {
+                toBePrinted = nextLevel;
+                nextLevel = 0;
+                ans.add(level);
+                level = new ArrayList<>();
+            }
         }
         return ans;
     }

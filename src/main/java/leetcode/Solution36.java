@@ -1,56 +1,41 @@
 package leetcode;
 
-class Node {
-    public int val;
-    public Node left;
-    public Node right;
+import leetcode.node.Node;
 
-    public Node() {
-    }
+public class Solution36 {
 
-    public Node(int _val) {
-        val = _val;
-    }
-
-    public Node(int _val, Node _left, Node _right) {
-        val = _val;
-        left = _left;
-        right = _right;
-    }
-}
-
-class Solution36 {
     private Node lastNode;
 
     public Node treeToDoublyList(Node root) {
         treeToDoublyListCore(root);
-
         Node head = lastNode;
         while (head != null && head.left != null) {
             head = head.left;
         }
+        if (head != null) {
+            head.left = lastNode;
+            lastNode.right = head;
+        }
         return head;
     }
 
-    private void treeToDoublyListCore(Node node) {
-        if (node == null) {
+    private void treeToDoublyListCore(Node root) {
+        if (root == null) {
             return;
         }
 
-        Node currentNode = node;
-
-        if (currentNode.left != null) {
-            treeToDoublyList(currentNode.left);
+        if (root.left != null) {
+            treeToDoublyListCore(root.left);
         }
 
-        currentNode.left = lastNode;
+        root.left = lastNode;
         if (lastNode != null) {
-            lastNode.right = currentNode;
+            lastNode.right = root;
         }
-        lastNode = currentNode;
+        lastNode = root;
 
-        if (currentNode.right != null) {
-            treeToDoublyList(currentNode.right);
+        if (root.right != null) {
+            treeToDoublyListCore(root.right);
         }
     }
 }

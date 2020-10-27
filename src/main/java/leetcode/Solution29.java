@@ -1,48 +1,50 @@
 package leetcode;
 
-import java.util.ArrayList;
-
 public class Solution29 {
+    int index = 0;
+
     public int[] spiralOrder(int[][] matrix) {
-        ArrayList<Integer> ans = new ArrayList<>();
-
-        if (matrix == null || matrix[0].length == 0) {
-            return ans.stream().mapToInt(i -> i).toArray();
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return new int[]{};
         }
 
-        int y1 = 0;
-        int y2 = matrix.length - 1;
-        int x1 = 0;
-        int x2 = matrix[0].length - 1;
+        int rows = matrix.length;
+        int cols = matrix[0].length;
 
+        int start = 0;
+        int[] ans = new int[rows * cols];
 
-        while (x1 <= x2 && y1 <= y2) {
-            for (int i = x1; i <= x2; i++) {
-                ans.add(matrix[y1][i]);
-            }
+        while (cols > 2 * start && rows > 2 * start) {
+            printMatrixInCircle(matrix, rows, cols, start, ans);
+            start++;
+        }
+        return ans;
+    }
 
-            for (int i = y1 + 1; i <= y2; i++) {
-                ans.add(matrix[i][x2]);
-            }
+    private void printMatrixInCircle(int[][] matrix, int rows, int cols, int start, int[] result) {
+        int endX = cols - 1 - start;
+        int endY = rows - 1 - start;
 
-            if (y1 != y2) {
-                for (int i = x2 - 1; i >= x1; i--) {
-                    ans.add(matrix[y2][i]);
-                }
-            }
-
-            if (x1 != x2) {
-                //下 -> 上
-                for (int i = y2 - 1; i > y1 + 1; i--) {
-                    ans.add(matrix[i][x1]);
-                }
-            }
-            x1++;
-            x2--;
-            y1++;
-            y2--;
+        for (int i = start; i <= endX; i++) {
+            result[index++] = matrix[start][i];
         }
 
-        return ans.stream().mapToInt(i -> i).toArray();
+        if (start < endY) {
+            for (int i = start + 1; i <= endY; i++) {
+                result[index++] = matrix[i][endX];
+            }
+        }
+
+        if (start < endX && start < endY) {
+            for (int i = endX - 1; i >= start; i--) {
+                result[index++] = matrix[endY][i];
+            }
+        }
+
+        if (start < endX && start < endY - 1) {
+            for (int i = endY - 1; i >= start + 1; i--) {
+                result[index++] = matrix[i][start];
+            }
+        }
     }
 }

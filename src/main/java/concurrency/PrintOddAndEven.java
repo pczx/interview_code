@@ -14,8 +14,8 @@ public class PrintOddAndEven {
     class TurningRunner implements Runnable {
         @Override
         public void run() {
-            while (count <= 100) {
-                synchronized (mutex) {
+            synchronized (mutex) {
+                while (count <= 100) {
                     System.out.println(Thread.currentThread() + " -> " + count++);
                     mutex.notifyAll();
                     try {

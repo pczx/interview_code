@@ -5,9 +5,11 @@ class Solution43 {
         return recursive(n);
     }
 
+    // 1-21345  1-9999 10000-19999 20000-21345
     private int recursive(int n) {
-        if (n <= 0)
+        if (n <= 0) {
             return 0;
+        }
         String s = String.valueOf(n);
         int high = s.charAt(0) - '0';
         int pow = (int) Math.pow(10, s.length() - 1);

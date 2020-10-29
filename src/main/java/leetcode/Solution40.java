@@ -2,32 +2,49 @@ package leetcode;
 
 import java.util.*;
 
-public class Solution40 {
-
+class Solution40 {
     public int[] getLeastNumbers(int[] arr, int k) {
+        if (arr == null || arr.length == 0 || k <= 0) {
+            return new int[0];
+        }
         int[] ans = new int[k];
-
-        if (k == 0) {
-            return arr;
-        }
-
-        PriorityQueue<Integer> queue = new PriorityQueue<Integer>((o1, o2) -> o2 - o1);
-
-        //建立最大堆
-        for (int i = 0; i < k; i++) {
-            queue.offer(arr[i]);
-        }
-
-        for (int i = k; i < arr.length; i++) {
-            if (queue.peek() > arr[i]) {
-                queue.poll();
-                queue.offer(arr[i]);
+        int start = 0, end = arr.length - 1;
+        int index = partition(arr, start, end);
+        while (index != k - 1) {
+            if (index > k -1) {
+                end = index - 1;
+                index = partition(arr, start, end);
+            } else {
+                start = index + 1;
+                index = partition(arr, start, end);
             }
         }
-
         for (int i = 0; i < k; i++) {
-            ans[i] = queue.poll();
+            ans[i] = arr[i];
         }
         return ans;
     }
+
+    private int partition(int[] a, int i, int j) {
+        int temp = a[i];
+        while (i < j) {
+            while (i < j && a[j] > temp) {
+                j--;
+            }
+            if (i < j) {
+                a[i] = a[j];
+                i++;
+            }
+            while (i < j && a[i] < temp) {
+                i++;
+            }
+            if (i < j) {
+                a[j] = a[i];
+                j--;
+            }
+        }
+        a[i] = temp;
+        return i;
+    }
 }
+

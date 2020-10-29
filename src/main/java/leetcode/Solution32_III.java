@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.*;
 
-class Solution32III {
+public class Solution32_III {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         LinkedList<TreeNode> queue = new LinkedList<>();

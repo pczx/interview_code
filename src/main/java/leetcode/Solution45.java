@@ -9,6 +9,10 @@ class Solution45 {
             strs[i] = String.valueOf(nums[i]);
         }
         Arrays.sort(strs, (x, y) -> (x + y).compareTo(y + x));
-        StringBuilder sb = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+        for (String s : strs) {
+            result.append(s);
+        }
+        return result.toString();
     }
 }

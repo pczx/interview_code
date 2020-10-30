@@ -2,13 +2,19 @@ package leetcode;
 
 public class Solution42 {
     public int maxSubArray(int[] nums) {
-        int[] dp = new int[nums.length];
-        dp[0] = nums[0];
-        int max = dp[0];
-        for (int i = 1; i < nums.length; i++) {
-            dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
-            max = Math.max(max, dp[i]);
+        int nCurSum = 0;
+        int nGreatestSum = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            if (nCurSum <= 0) {
+                nCurSum = nums[i];
+            } else {
+                nCurSum += nums[i];
+            }
+
+            if (nCurSum > nGreatestSum) {
+                nGreatestSum = nCurSum;
+            }
         }
-        return max;
+        return nGreatestSum;
     }
 }

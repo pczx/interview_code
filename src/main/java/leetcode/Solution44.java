@@ -39,5 +39,4 @@ class Solution44 {
         }
         return 9 * (long) Math.pow(10, digits - 1);
     }
-
 }

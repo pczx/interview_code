@@ -21,8 +21,9 @@ class Solution39 {
         return checkMoreThanHalf(nums, result) ? result : 0;
     }
 
-    private int partition(int[] a, int i, int j) {
-        int tmp = a[i];
+    private int partition(int[] a, int lo, int hi) {
+        int i = lo, j = hi;
+        int tmp = a[lo];
         while (i < j) {
             while (i < j && a[j] > tmp)
                 j--;
@@ -39,6 +40,12 @@ class Solution39 {
         }
         a[i] = tmp;
         return i;
+    }
+
+    private void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 
     private boolean checkMoreThanHalf(int[] a, int number) {

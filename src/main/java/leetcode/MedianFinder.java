@@ -5,6 +5,9 @@ import java.util.PriorityQueue;
 
 class MedianFinder {
 
+    /**
+     * initialize your data structure here.
+     */
     private PriorityQueue<Integer> maxHeap;
 
     private PriorityQueue<Integer> minHeap;
@@ -19,7 +22,7 @@ class MedianFinder {
 
     public void addNum(int num) {
         if (((maxHeap.size() + minHeap.size()) & 1) == 0) {
-            if (maxHeap.size() > 0 && num < maxHeap.peek()) {
+            if (maxHeap.size() > 0 && maxHeap.peek() > num) {
                 maxHeap.add(num);
                 num = maxHeap.poll();
             }
@@ -35,7 +38,7 @@ class MedianFinder {
 
     public double findMedian() {
         int size = maxHeap.size() + minHeap.size();
-        double result;
+        double result = 0;
         if ((size & 1) == 1) {
             result = minHeap.peek();
         } else {

@@ -1,7 +1,8 @@
 package leetcode;
 
-public class Solution40 {
+import java.util.*;
 
+class Solution40 {
     public int[] getLeastNumbers(int[] arr, int k) {
         if (arr == null || arr.length == 0 || k <= 0) {
             return new int[0];
@@ -10,7 +11,7 @@ public class Solution40 {
         int start = 0, end = arr.length - 1;
         int index = partition(arr, start, end);
         while (index != k - 1) {
-            if (index > k - 1) {
+            if (index > k -1) {
                 end = index - 1;
                 index = partition(arr, start, end);
             } else {
@@ -46,3 +47,4 @@ public class Solution40 {
         return i;
     }
 }
+

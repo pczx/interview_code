@@ -4,35 +4,36 @@ public class Solution52 {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) return null;
 
-        int lenA = 0, lenB = 0;
-        ListNode currA = headA;
-        ListNode currB = headB;
-        while (currA != null) {
-            lenA++;
-            currA = currA.next;
+        int lengthA = getListLength(headA), lengthB = getListLength(headB);
+        int lengthDif = lengthA - lengthB;
+        ListNode headLong = headA;
+        ListNode headShort = headB;
+
+        if (lengthA < lengthB) {
+            headLong = headB;
+            headShort = headA;
+            lengthDif = lengthB - lengthA;
         }
-        while (currB != null) {
-            lenB++;
-            currB = currB.next;
+
+
+        for (int i = 0; i < lengthDif; i++) {
+            headLong = headLong.next;
         }
-        currA = headA;
-        currB = headB;
-        if (lenA > lenB) {
-            for (int i = lenA - lenB; i > 0; i--) {
-                currA = currA.next;
-            }
-        } else {
-            for (int i = lenB - lenA; i > 0; i--) {
-                currB = currB.next;
-            }
+
+        while (headLong != null && headShort != null && headLong != headShort) {
+            headLong = headLong.next;
+            headShort = headShort.next;
         }
-        while (currA != null && currB != null) {
-            if (currA == currB) {
-                return currA;
-            }
-            currA = currA.next;
-            currB = currB.next;
+        return headLong;
+    }
+
+    private int getListLength(ListNode head) {
+        int length = 0;
+        ListNode node = head;
+        while (node != null) {
+            length++;
+            node = node.next;
         }
-        return null;
+        return length;
     }
 }

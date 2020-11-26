@@ -1,22 +1,38 @@
 package leetcode;
 
 class Solution54 {
-    int count = 0;
-    TreeNode node;
+
+    private int k;
+
+    private int res;
+
     public int kthLargest(TreeNode root, int k) {
-        dfs(root, k);
-        return node.val;
+        this.k = k;
+        kthLargestCore(root);
+        return res;
     }
 
-    public void dfs(TreeNode root, int k) {
+    private void kthLargestCore(TreeNode root) {
         if (root == null) {
             return;
         }
-        // 右 -> 根 -> 左
-        dfs(root.right, k);
-        if (++count == k) {
-            node = root;
+
+        if (root.right != null) {
+            kthLargestCore(root.right);
         }
-        dfs(root.left, k);
+
+
+        if (k == 0) {
+            return;
+        }
+
+        if (--k == 0) {
+            res = root.val;
+        }
+
+
+        if (root.left != null) {
+            kthLargestCore(root.left);
+        }
     }
 }
